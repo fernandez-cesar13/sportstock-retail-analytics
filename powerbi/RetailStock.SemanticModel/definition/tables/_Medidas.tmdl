@@ -1,0 +1,268 @@
+/// Tabla contenedora de medidas (sin datos).
+table _Medidas
+
+	/// Importe total vendido (con descuentos aplicados).
+	measure 'Ventas Importe' = ```
+			// El importe del hecho ya lleva el descuento; no se recalcula desde precio_venta
+			SUM ( FactVentas[importe] )
+			```
+		formatString: "#,##0.00 €"
+		displayFolder: Ventas
+
+	/// Unidades físicas vendidas en el periodo filtrado.
+	measure 'Unidades Vendidas' = ```
+			// Unidades reales (la demanda que cupo en el stock), base de la venta media y de la cobertura
+			SUM ( FactVentas[unidades] )
+			```
+		formatString: #,##0
+		displayFolder: Ventas
+
+	/// Coste de lo vendido a precio de coste de la ficha.
+	measure 'Coste Ventas' = ```
+			// Precio de ficha, no FactVentas[coste]: el mismo coste que valora el stock, para que margen y rotación hablen el mismo idioma
+			SUMX (
+				FactVentas,
+				FactVentas[unidades] * RELATED ( DimProducto[precio_coste] )
+			)
+			```
+		formatString: "#,##0.00 €"
+		displayFolder: Ventas
+
+	/// Importe vendido menos coste de ventas.
+	measure Margen = ```
+			// Margen bruto del periodo. No es el markup de la ficha (precio_venta / precio_coste - 1)
+			[Ventas Importe] - [Coste Ventas]
+			```
+		formatString: "#,##0.00 €"
+		displayFolder: Ventas
+
+	/// Margen sobre el importe vendido.
+	measure 'Margen %' = ```
+			// Sobre venta, no sobre coste. DIVIDE deja el visual en blanco si no hubo importe, en vez de un error de división
+			DIVIDE ( [Margen], [Ventas Importe] )
+			```
+		formatString: 0.00%
+		displayFolder: Ventas
+
+	/// Importe vendido en el mes anterior al periodo filtrado.
+	measure 'Ventas Mes Anterior' = ```
+			// DATEADD desplaza el filtro de fechas un mes y exige un rango contiguo en el calendario. No es el año anterior
+			CALCULATE (
+				[Ventas Importe],
+				DATEADD ( DimCalendario[fecha], -1, MONTH )
+			)
+			```
+		formatString: "#,##0.00 €"
+		displayFolder: Ventas
+
+	/// Variación del importe respecto al mes anterior.
+	measure 'Var % vs Mes Anterior' = ```
+			// Variación relativa. DIVIDE evita el error si el mes anterior no vendió (denominador vacío o cero)
+			DIVIDE (
+				[Ventas Importe] - [Ventas Mes Anterior],
+				[Ventas Mes Anterior]
+			)
+			```
+		formatString: 0.00%
+		displayFolder: Ventas
+
+	/// Unidades en stock al último día del periodo (semiaditivo).
+	measure 'Stock Actual (uds)' = ```
+			// Stock semiaditivo: se suma entre tiendas y productos, pero NO entre días; LASTDATE toma el cierre del último día del periodo filtrado
+			CALCULATE (
+				SUM ( FactStock[stock_final] ),
+				LASTDATE ( DimCalendario[fecha] )
+			)
+			```
+		formatString: #,##0
+		displayFolder: Stock
+
+	/// Valor a coste del stock del último día del periodo.
+	measure 'Valor Stock' = ```
+			// Mismo cierre que Stock Actual, valorado a precio_coste. Sumar el año contaría el mismo par muchas veces
+			CALCULATE (
+				SUMX (
+					FactStock,
+					FactStock[stock_final] * RELATED ( DimProducto[precio_coste] )
+				),
+				LASTDATE ( DimCalendario[fecha] )
+			)
+			```
+		formatString: "#,##0.00 €"
+		displayFolder: Stock
+
+	/// Media de las unidades en stock de cada día del periodo.
+	measure 'Stock Medio' = ```
+			// Media de los cierres diarios, no de las filas: un día con menos combinaciones no debe pesar menos. AVERAGEX ignora el día en blanco
+			AVERAGEX (
+				VALUES ( DimCalendario[fecha] ),
+				CALCULATE ( SUM ( FactStock[stock_final] ) )
+			)
+			```
+		formatString: #,##0
+		displayFolder: Stock
+
+	/// Media del valor a coste del stock de cada día del periodo.
+	measure 'Valor Stock Medio' = ```
+			// Denominador de la rotación: stock medio a coste, no el cierre del último día (ese es Valor Stock)
+			AVERAGEX (
+				VALUES ( DimCalendario[fecha] ),
+				CALCULATE (
+					SUMX (
+						FactStock,
+						FactStock[stock_final] * RELATED ( DimProducto[precio_coste] )
+					)
+				)
+			)
+			```
+		formatString: "#,##0.00 €"
+		displayFolder: Stock
+
+	/// Unidades vendidas por día de calendario del periodo.
+	measure 'Venta Media Diaria' = ```
+			// Divide por los días del calendario visibles, no por los días con venta: un día sin ticket cuenta, si no la cobertura sale más corta
+			DIVIDE (
+				[Unidades Vendidas],
+				COUNTROWS ( VALUES ( DimCalendario[fecha] ) )
+			)
+			```
+		formatString: #,##0.00
+		displayFolder: Stock
+
+	/// Días que cubre el stock actual al ritmo de venta del periodo.
+	measure 'Días de Cobertura' = ```
+			// Stock del último día partido por la venta media del periodo filtrado. No usa la ventana fija de 28 días del KPI SQL
+			DIVIDE ( [Stock Actual (uds)], [Venta Media Diaria] )
+			```
+		formatString: #,##0.0
+		displayFolder: Stock
+
+	/// Veces que el stock medio a coste se renovó con el coste de ventas.
+	measure 'Rotación' = ```
+			// Coste de lo vendido / valor medio del stock. El margen dice si se gana; esto dice si el dinero está quieto
+			DIVIDE ( [Coste Ventas], [Valor Stock Medio] )
+			```
+		formatString: #,##0.00
+		displayFolder: Stock
+
+	/// Combinaciones producto-tienda visibles en el filtro.
+	measure 'Total Referencias' = ```
+			// Producto × tienda del contexto, no las filas del hecho: una combinación sin movimiento sigue siendo una referencia
+			COUNTROWS (
+				CROSSJOIN (
+					VALUES ( DimProducto[producto_id] ),
+					VALUES ( DimTienda[tienda_id] )
+				)
+			)
+			```
+		formatString: #,##0
+		displayFolder: Alertas
+
+	/// Referencias con stock a cero el último día del periodo.
+	measure 'Referencias en Rotura' = ```
+			// Se evalúa el cierre (Stock Actual), no la suma del periodo. El blanco (sin fila de stock) no es rotura: no se observó
+			COUNTROWS (
+				FILTER (
+					CROSSJOIN (
+						VALUES ( DimProducto[producto_id] ),
+						VALUES ( DimTienda[tienda_id] )
+					),
+					VAR s = [Stock Actual (uds)]
+					RETURN
+						NOT ISBLANK ( s ) && s = 0
+				)
+			)
+			```
+		formatString: #,##0
+		displayFolder: Alertas
+
+	/// Referencias con stock por encima de cero y por debajo del mínimo.
+	measure 'Referencias Bajo Mínimo' = ```
+			// Excluye la rotura (s > 0) para que los estados no se solapen. CALCULATE aplica el producto de la fila: sin él, MAX vería todo el filtro
+			COUNTROWS (
+				FILTER (
+					CROSSJOIN (
+						VALUES ( DimProducto[producto_id] ),
+						VALUES ( DimTienda[tienda_id] )
+					),
+					VAR s = [Stock Actual (uds)]
+					VAR mn =
+						CALCULATE ( MAX ( DimProducto[stock_minimo] ) )
+					RETURN
+						s > 0 && s < mn
+				)
+			)
+			```
+		formatString: #,##0
+		displayFolder: Alertas
+
+	/// Referencias con stock por encima del máximo.
+	measure 'Referencias Sobrestock' = ```
+			// Estrictamente por encima del máximo: en el máximo la referencia sigue OK. Un stock en blanco no cumple s > mx
+			COUNTROWS (
+				FILTER (
+					CROSSJOIN (
+						VALUES ( DimProducto[producto_id] ),
+						VALUES ( DimTienda[tienda_id] )
+					),
+					VAR s = [Stock Actual (uds)]
+					VAR mx =
+						CALCULATE ( MAX ( DimProducto[stock_maximo] ) )
+					RETURN
+						s > mx
+				)
+			)
+			```
+		formatString: #,##0
+		displayFolder: Alertas
+
+	/// Proporción de referencias que no están en rotura.
+	measure '% Disponibilidad' = ```
+			// 1 menos la tasa de rotura. DIVIDE deja blanco si el filtro no tiene referencias, en vez de dividir por cero
+			1 - DIVIDE ( [Referencias en Rotura], [Total Referencias] )
+			```
+		formatString: 0.00%
+		displayFolder: Alertas
+
+	/// Estado de la referencia cuando hay un solo producto y una sola tienda.
+	measure 'Estado Stock' = ```
+			// Solo para formato condicional de una celda. Con varias referencias un texto agregado mentiría; HASONEVALUE lo deja en blanco
+			IF (
+				HASONEVALUE ( DimProducto[producto_id] )
+					&& HASONEVALUE ( DimTienda[tienda_id] ),
+				VAR s = [Stock Actual (uds)]
+				VAR mn =
+					MAX ( DimProducto[stock_minimo] )
+				VAR mx =
+					MAX ( DimProducto[stock_maximo] )
+				RETURN
+					IF (
+						ISBLANK ( s ),
+						BLANK (),
+						SWITCH (
+							TRUE (),
+							s = 0, "Rotura",
+							s < mn, "Bajo mínimo",
+							s > mx, "Sobrestock",
+							"OK"
+						)
+					)
+			)
+			```
+		displayFolder: Alertas
+
+	column Columna
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: Columna
+
+	partition _Medidas = m
+		mode: import
+		source = ```
+				let
+					// Tabla vacía: solo sirve de contenedor de medidas
+					Origen = #table(type table [Columna = text], {})
+				in
+					Origen
+				```

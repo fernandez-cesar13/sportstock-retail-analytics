@@ -1,0 +1,75 @@
+/// Catálogo de productos con precios, stock objetivo y plazo de entrega.
+table DimProducto
+
+	column producto_id
+		dataType: int64
+		isKey
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: producto_id
+
+	column sku
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sku
+
+	column nombre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nombre
+
+	column categoria_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: categoria_id
+
+	column marca
+		dataType: string
+		summarizeBy: none
+		sourceColumn: marca
+
+	column precio_coste
+		dataType: double
+		formatString: #,##0.00
+		summarizeBy: none
+		sourceColumn: precio_coste
+
+	column precio_venta
+		dataType: double
+		formatString: #,##0.00
+		summarizeBy: none
+		sourceColumn: precio_venta
+
+	column stock_minimo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: stock_minimo
+
+	column stock_maximo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: stock_maximo
+
+	column lead_time_dias
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: lead_time_dias
+
+	partition DimProducto = m
+		mode: import
+		source = ```
+				let
+					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
+					Origen = Csv.Document(File.Contents(RutaDatos & "productos.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
+					// Tipos con cultura en-US porque el CSV usa punto decimal y fechas ISO
+					Tipos = Table.TransformColumnTypes(Encabezados, {{"producto_id", Int64.Type}, {"sku", type text}, {"nombre", type text}, {"categoria_id", Int64.Type}, {"marca", type text}, {"precio_coste", type number}, {"precio_venta", type number}, {"stock_minimo", Int64.Type}, {"stock_maximo", Int64.Type}, {"lead_time_dias", Int64.Type}}, "en-US")
+				in
+					Tipos
+				```

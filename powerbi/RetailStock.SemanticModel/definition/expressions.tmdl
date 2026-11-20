@@ -1,0 +1,2 @@
+/// Carpeta con los CSV sintéticos. Cámbiala si clonas el repositorio en otra ruta (ver docs/configurar_ruta_datos.md).
+expression RutaDatos = "C:\Users\morde\Documents\Proyectos\retail-stock-analytics\data\raw\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]

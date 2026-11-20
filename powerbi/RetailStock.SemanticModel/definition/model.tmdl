@@ -1,0 +1,18 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-ES
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+ref table DimCalendario
+ref table DimCategoria
+ref table DimProducto
+ref table DimTienda
+ref table FactVentas
+ref table FactStock
+ref table _Medidas
+
+ref cultureInfo es-ES

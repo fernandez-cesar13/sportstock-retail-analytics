@@ -1,0 +1,27 @@
+relationship FactVentas_DimCalendario
+	fromColumn: FactVentas.fecha
+	toColumn: DimCalendario.fecha
+
+relationship FactVentas_DimTienda
+	fromColumn: FactVentas.tienda_id
+	toColumn: DimTienda.tienda_id
+
+relationship FactVentas_DimProducto
+	fromColumn: FactVentas.producto_id
+	toColumn: DimProducto.producto_id
+
+relationship FactStock_DimCalendario
+	fromColumn: FactStock.fecha
+	toColumn: DimCalendario.fecha
+
+relationship FactStock_DimTienda
+	fromColumn: FactStock.tienda_id
+	toColumn: DimTienda.tienda_id
+
+relationship FactStock_DimProducto
+	fromColumn: FactStock.producto_id
+	toColumn: DimProducto.producto_id
+
+relationship DimProducto_DimCategoria
+	fromColumn: DimProducto.categoria_id
+	toColumn: DimCategoria.categoria_id

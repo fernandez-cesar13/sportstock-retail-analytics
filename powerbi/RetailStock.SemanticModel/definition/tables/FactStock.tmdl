@@ -1,0 +1,54 @@
+/// Stock diario por fecha, tienda y producto (cierre, entradas y salidas).
+table FactStock
+
+	column fecha
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		summarizeBy: none
+		sourceColumn: fecha
+
+	column tienda_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: tienda_id
+
+	column producto_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: producto_id
+
+	column stock_final
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: stock_final
+
+	column entradas
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: entradas
+
+	column salidas
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: salidas
+
+	partition FactStock = m
+		mode: import
+		source = ```
+				let
+					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
+					Origen = Csv.Document(File.Contents(RutaDatos & "stock_diario.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
+					// Tipos con cultura en-US porque el CSV usa punto decimal y fechas ISO
+					Tipos = Table.TransformColumnTypes(Encabezados, {{"fecha", type date}, {"tienda_id", Int64.Type}, {"producto_id", Int64.Type}, {"stock_final", Int64.Type}, {"entradas", Int64.Type}, {"salidas", Int64.Type}}, "en-US")
+				in
+					Tipos
+				```

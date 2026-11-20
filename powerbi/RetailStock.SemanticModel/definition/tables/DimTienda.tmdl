@@ -1,0 +1,44 @@
+/// Tiendas de la cadena con ciudad, tipo y superficie.
+table DimTienda
+
+	column tienda_id
+		dataType: int64
+		isKey
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: tienda_id
+
+	column nombre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nombre
+
+	column ciudad
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ciudad
+
+	column tipo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: tipo
+
+	column m2
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: m2
+
+	partition DimTienda = m
+		mode: import
+		source = ```
+				let
+					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
+					Origen = Csv.Document(File.Contents(RutaDatos & "tiendas.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
+					// Tipos con cultura en-US porque el CSV usa punto decimal y fechas ISO
+					Tipos = Table.TransformColumnTypes(Encabezados, {{"tienda_id", Int64.Type}, {"nombre", type text}, {"ciudad", type text}, {"tipo", type text}, {"m2", Int64.Type}}, "en-US")
+				in
+					Tipos
+				```

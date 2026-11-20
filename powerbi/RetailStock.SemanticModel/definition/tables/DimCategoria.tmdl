@@ -1,0 +1,33 @@
+/// Categorías de producto y la sección a la que pertenecen.
+table DimCategoria
+
+	column categoria_id
+		dataType: int64
+		isKey
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: categoria_id
+
+	column categoria
+		dataType: string
+		summarizeBy: none
+		sourceColumn: categoria
+
+	column seccion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: seccion
+
+	partition DimCategoria = m
+		mode: import
+		source = ```
+				let
+					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
+					Origen = Csv.Document(File.Contents(RutaDatos & "categorias.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
+					// Tipos con cultura en-US porque el CSV usa punto decimal y fechas ISO
+					Tipos = Table.TransformColumnTypes(Encabezados, {{"categoria_id", Int64.Type}, {"categoria", type text}, {"seccion", type text}}, "en-US")
+				in
+					Tipos
+				```

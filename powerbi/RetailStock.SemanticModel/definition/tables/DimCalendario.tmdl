@@ -1,0 +1,82 @@
+/// Calendario diario con mes, semana, temporada y eventos de cadena.
+table DimCalendario
+	dataCategory: Time
+
+	column fecha
+		dataType: dateTime
+		isKey
+		formatString: dd/mm/yyyy
+		summarizeBy: none
+		sourceColumn: fecha
+
+	column 'año'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: año
+
+	column mes
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: mes
+
+	column nombre_mes
+		dataType: string
+		sortByColumn: mes
+		summarizeBy: none
+		sourceColumn: nombre_mes
+
+	column semana
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: semana
+
+	column dia_semana
+		dataType: string
+		sortByColumn: dia_semana_num
+		summarizeBy: none
+		sourceColumn: dia_semana
+
+	column dia_semana_num
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: dia_semana_num
+
+	column es_fin_de_semana
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: es_fin_de_semana
+
+	column temporada
+		dataType: string
+		summarizeBy: none
+		sourceColumn: temporada
+
+	column es_rebajas
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: es_rebajas
+
+	column es_black_friday
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: es_black_friday
+
+	partition DimCalendario = m
+		mode: import
+		source = ```
+				let
+					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
+					Origen = Csv.Document(File.Contents(RutaDatos & "calendario.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
+					// Tipos con cultura en-US porque el CSV usa punto decimal y fechas ISO
+					Tipos = Table.TransformColumnTypes(Encabezados, {{"fecha", type date}, {"año", Int64.Type}, {"mes", Int64.Type}, {"nombre_mes", type text}, {"semana", Int64.Type}, {"dia_semana", type text}, {"es_fin_de_semana", type logical}, {"temporada", type text}, {"es_rebajas", type logical}, {"es_black_friday", type logical}}, "en-US"),
+					// Lunes = 1, para ordenar dia_semana
+					ConDia = Table.AddColumn(Tipos, "dia_semana_num", each Date.DayOfWeek([fecha], Day.Monday) + 1, Int64.Type)
+				in
+					ConDia
+				```
