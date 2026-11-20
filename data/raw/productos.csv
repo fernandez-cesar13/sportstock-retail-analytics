@@ -1,0 +1,201 @@
+producto_id,sku,nombre,categoria_id,marca,precio_coste,precio_venta,stock_minimo,stock_maximo,lead_time_dias
+1,RUN-0001,Zapatilla trail Trailon X1,1,Trailon,57.41,88.02,2,5,18
+2,RUN-0002,Zapatilla trail Trailon X3,1,Trailon,74.27,118.2,38,84,10
+3,RUN-0003,Zapatilla asfalto Trailon Pace,1,Trailon,68.73,99.67,51,96,14
+4,RUN-0004,Zapatilla mixta Corrid Road,1,Corrid,51.58,69.28,36,70,13
+5,RUN-0005,Camiseta técnica running Trailon,1,Trailon,16.83,21.95,81,128,21
+6,RUN-0006,Camiseta manga larga Corrid,1,Corrid,23.67,32.4,88,160,15
+7,RUN-0007,Mallas running Trailon Elite,1,Trailon,29.17,39.07,47,104,10
+8,RUN-0008,Pantalón corto running Corrid,1,Corrid,16.73,25.15,162,256,21
+9,RUN-0009,Cortavientos Trailon,1,Trailon,32.92,44.0,24,95,4
+10,RUN-0010,Chaqueta impermeable Trailon,1,Trailon,59.52,86.42,79,125,21
+11,RUN-0011,Calcetín técnico Trailon pack 3,1,Trailon,7.83,11.81,61,209,5
+12,RUN-0012,Gorra running Trailon,1,Trailon,12.82,18.9,58,159,7
+13,RUN-0013,Mochila de hidratación Trailon 5 L,1,Trailon,32.74,44.52,2,5,18
+14,RUN-0014,Cinturón porta-dorsal Corrid,1,Corrid,14.72,22.69,98,173,16
+15,RUN-0015,Reloj GPS running Trailon,1,Trailon,89.19,135.09,60,95,21
+16,RUN-0016,Luz frontal running Corrid,1,Corrid,14.35,21.84,125,220,16
+17,RUN-0017,Botella blanda Trailon 500 ml,1,Trailon,10.09,13.51,152,284,14
+18,RUN-0018,Guantes running Corrid,1,Corrid,11.16,14.92,61,154,8
+19,RUN-0019,Braga de cuello Trailon,1,Trailon,9.47,14.95,21,148,2
+20,RUN-0020,Plantillas running Trailon,1,Trailon,14.29,20.28,28,113,4
+21,RUN-0021,Rodilleras running Corrid,1,Corrid,16.66,23.16,2,5,7
+22,RUN-0022,Chaleco reflectante Trailon,1,Trailon,17.58,25.43,17,118,2
+23,RUN-0023,Gafas running Trailon,1,Trailon,21.51,32.24,45,90,12
+24,RUN-0024,Cinta de sudor Corrid,1,Corrid,6.38,10.12,137,235,17
+25,RUN-0025,Bolsa de zapatillas Trailon,1,Trailon,12.53,17.37,115,182,21
+26,FIT-0001,Mancuerna hexagonal Fitcore 5 kg,2,Fitcore,11.41,18.0,2,5,11
+27,FIT-0002,Mancuerna hexagonal Fitcore 10 kg,2,Fitcore,19.89,26.01,111,182,19
+28,FIT-0003,Mancuerna hexagonal Fitcore 15 kg,2,Fitcore,25.96,38.07,153,242,21
+29,FIT-0004,Barra olímpica Fitcore 20 kg,2,Fitcore,80.3,119.66,61,100,19
+30,FIT-0005,Disco olímpico Fitcore 10 kg,2,Fitcore,22.64,30.15,75,158,11
+31,FIT-0006,Pesa rusa Fitcore 8 kg,2,Fitcore,18.7,25.1,75,189,8
+32,FIT-0007,Pesa rusa Fitcore 16 kg,2,Fitcore,34.39,49.03,154,243,21
+33,FIT-0008,Esterilla fitness Pulso 8 mm,2,Pulso,13.61,21.64,50,150,6
+34,FIT-0009,Comba de velocidad Pulso,2,Pulso,7.83,11.58,155,343,10
+35,FIT-0010,Banda elástica Fitcore media,2,Fitcore,5.97,9.43,39,196,3
+36,FIT-0011,Set de bandas elásticas Pulso,2,Pulso,11.4,17.57,126,216,17
+37,FIT-0012,Banco ajustable Fitcore,2,Fitcore,89.37,128.71,40,75,14
+38,FIT-0013,Barra de dominadas Pulso,2,Pulso,24.9,38.23,2,5,7
+39,FIT-0014,Rueda abdominal Fitcore,2,Fitcore,9.56,12.48,48,145,6
+40,FIT-0015,Step aeróbic Pulso 15 cm,2,Pulso,28.76,38.33,69,133,13
+41,FIT-0016,Pelota de pilates Fitcore 65 cm,2,Fitcore,11.88,18.4,131,264,12
+42,FIT-0017,Rodillo de espuma Pulso,2,Pulso,14.75,22.7,222,372,18
+43,FIT-0018,Guantes de entrenamiento Fitcore,2,Fitcore,10.32,14.14,48,131,7
+44,FIT-0019,Cinturón lumbar Fitcore,2,Fitcore,17.46,25.48,163,262,20
+45,FIT-0020,Toalla de microfibra Pulso,2,Pulso,8.43,12.49,82,182,10
+46,FIT-0021,Botella shaker Fitcore 700 ml,2,Fitcore,6.29,9.81,2,5,18
+47,FIT-0022,Lastre para tobillos Pulso 2 kg,2,Pulso,11.78,17.45,52,158,6
+48,FIT-0023,Cintas de suspensión Fitcore,2,Fitcore,21.25,30.26,9,61,2
+49,FIT-0024,Colchoneta plegable Pulso,2,Pulso,20.58,29.06,26,130,3
+50,FIT-0025,Pulsómetro fitness Fitcore,2,Fitcore,32.98,47.09,42,98,9
+51,CIC-0001,Casco de ciclismo Velox,3,Velox,52.36,78.31,2,5,21
+52,CIC-0002,Casco urbano Pedalix,3,Pedalix,32.24,50.3,8,56,2
+53,CIC-0003,Maillot de ciclismo Velox,3,Velox,41.84,60.09,35,82,9
+54,CIC-0004,Culote con tirantes Velox,3,Velox,46.19,63.48,19,77,4
+55,CIC-0005,Guantes de ciclismo Pedalix,3,Pedalix,15.49,21.24,141,227,20
+56,CIC-0006,Calcetines de ciclismo Velox,3,Velox,8.36,12.74,163,296,15
+57,CIC-0007,Gafas de ciclismo Velox,3,Velox,24.84,38.38,108,186,17
+58,CIC-0008,Bidón de ciclismo Velox 750 ml,3,Velox,6.07,8.08,262,461,16
+59,CIC-0009,Portabidón Pedalix,3,Pedalix,7.54,9.95,145,263,15
+60,CIC-0010,Luz delantera Velox,3,Velox,20.64,30.51,75,129,17
+61,CIC-0011,Luz trasera Pedalix,3,Pedalix,12.32,16.56,22,153,2
+62,CIC-0012,Candado plegable Velox,3,Velox,17.92,27.73,120,197,19
+63,CIC-0013,Bomba de mano Pedalix,3,Pedalix,12.13,16.9,2,5,16
+64,CIC-0014,Cámara de repuesto Velox 700,3,Velox,6.25,8.39,204,359,16
+65,CIC-0015,Kit de parches Pedalix,3,Pedalix,4.09,6.45,125,294,9
+66,CIC-0016,Cubierta de ciclismo Velox 28,3,Velox,22.19,29.95,121,203,18
+67,CIC-0017,Sillín deportivo Velox,3,Velox,35.33,48.95,72,169,9
+68,CIC-0018,Pedales automáticos Pedalix,3,Pedalix,46.49,62.58,15,102,2
+69,CIC-0019,Alforja trasera Velox 20 L,3,Velox,37.0,49.38,97,156,20
+70,CIC-0020,Soporte de móvil Pedalix,3,Pedalix,13.86,18.11,49,148,6
+71,CIC-0021,Chaqueta cortavientos Velox,3,Velox,42.95,56.55,24,95,4
+72,CIC-0022,Manguitos de ciclismo Pedalix,3,Pedalix,11.82,15.99,96,179,14
+73,CIC-0023,Calapiés Velox,3,Velox,8.45,11.12,65,197,6
+74,CIC-0024,Multiherramienta Pedalix,3,Pedalix,13.4,19.8,150,246,19
+75,CIC-0025,Portaequipajes Velox,3,Velox,26.02,39.14,62,137,10
+76,MON-0001,Bota de montaña Montix,4,Montix,82.03,116.33,2,5,7
+77,MON-0002,Bota ligera Cimera,4,Cimera,58.02,80.96,51,81,21
+78,MON-0003,Mochila de montaña Montix 30 L,4,Montix,56.42,81.89,26,53,12
+79,MON-0004,Mochila de montaña Cimera 20 L,4,Cimera,38.35,59.92,24,65,7
+80,MON-0005,Chaqueta softshell Montix,4,Montix,67.95,105.69,44,80,15
+81,MON-0006,Forro polar Cimera,4,Cimera,28.74,37.74,57,115,12
+82,MON-0007,Pantalón desmontable Montix,4,Montix,39.4,53.37,15,101,2
+83,MON-0008,Bastón telescópico Montix par,4,Montix,31.51,43.2,109,187,17
+84,MON-0009,Frontal LED Cimera 300,4,Cimera,20.83,28.64,47,104,10
+85,MON-0010,Cantimplora Montix 1 L,4,Montix,9.24,13.6,146,265,15
+86,MON-0011,Navaja multiusos Cimera,4,Cimera,14.95,21.3,121,199,19
+87,MON-0012,Saco de dormir Montix 10C,4,Montix,46.6,61.27,52,98,14
+88,MON-0013,Esterilla aislante Cimera,4,Cimera,24.85,35.09,2,5,15
+89,MON-0014,Tienda de campaña Montix 2 plazas,4,Montix,113.5,165.38,21,58,7
+90,MON-0015,Brújula Cimera,4,Cimera,12.0,15.97,44,132,6
+91,MON-0016,Gafas de sol Montix,4,Montix,20.78,32.21,78,173,10
+92,MON-0017,Guantes softshell Montix,4,Montix,18.57,24.43,90,148,19
+93,MON-0018,Tubular de cuello Cimera,4,Cimera,7.93,12.51,116,234,12
+94,MON-0019,Poncho impermeable Montix,4,Montix,13.73,18.26,113,284,8
+95,MON-0020,Botiquín básico Cimera,4,Cimera,11.62,18.05,143,246,17
+96,MON-0021,Linterna de mano Montix,4,Montix,15.31,24.05,189,310,19
+97,MON-0022,Crampones ligeros Cimera,4,Cimera,39.12,62.35,89,143,20
+98,MON-0023,Piolet básico Montix,4,Montix,51.37,79.14,31,85,7
+99,MON-0024,Cuerda auxiliar Cimera 20 m,4,Cimera,32.86,50.4,75,132,16
+100,MON-0025,Mosquetón de seguridad Montix,4,Montix,10.74,16.03,104,201,13
+101,RAQ-0001,Raqueta de tenis Raketa Pro 300,5,Raketa,95.88,147.05,2,5,10
+102,RAQ-0002,Raqueta de tenis Gripio Club,5,Gripio,46.44,62.25,38,89,9
+103,RAQ-0003,Raqueta de pádel Raketa Control,5,Raketa,67.38,98.43,10,41,4
+104,RAQ-0004,Raqueta de pádel Gripio Power,5,Gripio,91.38,132.89,22,61,7
+105,RAQ-0005,Raqueta de bádminton Raketa,5,Raketa,31.34,48.8,72,145,12
+106,RAQ-0006,Pelotas de tenis Raketa pack 3,5,Raketa,5.17,7.44,232,381,19
+107,RAQ-0007,Pelotas de pádel Gripio pack 3,5,Gripio,4.96,7.02,201,330,19
+108,RAQ-0008,Volantes de bádminton Raketa 6,5,Raketa,5.78,8.62,59,203,5
+109,RAQ-0009,Overgrip Raketa pack 3,5,Raketa,3.74,5.16,182,330,15
+110,RAQ-0010,Cordaje de tenis Gripio,5,Gripio,10.64,14.28,30,150,3
+111,RAQ-0011,Bolsa raquetero Raketa,5,Raketa,34.75,50.16,41,75,15
+112,RAQ-0012,Paletero de pádel Gripio,5,Gripio,38.1,54.3,31,77,8
+113,RAQ-0013,Muñequera Raketa par,5,Raketa,5.81,7.96,2,5,10
+114,RAQ-0014,Visera de pádel Gripio,5,Gripio,10.13,14.29,88,155,16
+115,RAQ-0015,Zapatilla de pádel Raketa,5,Raketa,52.16,73.54,50,110,10
+116,RAQ-0016,Zapatilla de tenis Gripio,5,Gripio,52.85,73.9,79,132,18
+117,RAQ-0017,Camiseta de tenis Raketa,5,Raketa,18.74,26.5,59,119,12
+118,RAQ-0018,Falda de pádel Gripio,5,Gripio,22.77,34.29,77,122,21
+119,RAQ-0019,Red portátil de bádminton Raketa,5,Raketa,24.73,34.35,34,64,14
+120,RAQ-0020,Toalla de pista Gripio,5,Gripio,8.16,12.93,55,150,7
+121,RAQ-0021,Antivibrador Raketa pack,5,Raketa,4.05,6.38,275,472,17
+122,RAQ-0022,Presurizador de pelotas Gripio,5,Gripio,12.29,17.75,81,179,10
+123,RAQ-0023,Cinta protectora Raketa,5,Raketa,5.6,7.83,112,226,12
+124,RAQ-0024,Gorra de tenis Gripio,5,Gripio,11.84,17.29,34,135,4
+125,RAQ-0025,Botella de pista Raketa 750 ml,5,Raketa,7.41,11.52,26,103,4
+126,NAT-0001,Bañador jammer Aqualis,6,Aqualis,21.98,32.88,2,5,13
+127,NAT-0002,Bañador de mujer Aqualis,6,Aqualis,23.35,35.99,33,113,5
+128,NAT-0003,Gafas de natación Aqualis,6,Aqualis,11.32,16.53,188,297,21
+129,NAT-0004,Gafas de natación Ondia espejo,6,Ondia,14.98,22.32,184,302,19
+130,NAT-0005,Gorro de silicona Aqualis,6,Aqualis,6.08,8.43,218,384,16
+131,NAT-0006,Gorro textil Ondia,6,Ondia,4.74,7.21,267,471,16
+132,NAT-0007,Tabla de natación Aqualis,6,Aqualis,12.82,17.44,94,182,13
+133,NAT-0008,Pullboy de entreno Ondia,6,Ondia,10.13,15.28,37,185,3
+134,NAT-0009,Aletas cortas de entreno Aqualis,6,Aqualis,21.46,33.44,90,212,9
+135,NAT-0010,Aletas largas Ondia,6,Ondia,28.41,38.06,50,106,11
+136,NAT-0011,Tubo frontal Aqualis,6,Aqualis,12.93,19.19,137,221,20
+137,NAT-0012,Toalla de microfibra Ondia,6,Ondia,12.88,17.11,72,218,6
+138,NAT-0013,Chanclas de piscina Aqualis,6,Aqualis,7.98,12.11,2,5,11
+139,NAT-0014,Albornoz de piscina Ondia,6,Ondia,26.13,34.63,69,173,8
+140,NAT-0015,Pinza de nariz Aqualis,6,Aqualis,2.8,4.43,66,267,4
+141,NAT-0016,Tapones de oído Ondia,6,Ondia,3.99,5.35,79,319,4
+142,NAT-0017,Bolsa impermeable Aqualis,6,Aqualis,9.99,15.86,91,214,9
+143,NAT-0018,Cinturón de flotación Ondia,6,Ondia,12.84,19.78,28,140,3
+144,NAT-0019,Churro de piscina Aqualis,6,Aqualis,6.07,8.97,56,281,3
+145,NAT-0020,Cronómetro de natación Ondia,6,Ondia,14.94,22.93,66,155,9
+146,NAT-0021,Camiseta anti-UV Aqualis,6,Aqualis,17.33,26.66,2,5,7
+147,NAT-0022,Palo de acuagym Ondia,6,Ondia,7.78,12.32,129,249,13
+148,NAT-0023,Mancuernas acuáticas Aqualis,6,Aqualis,14.05,19.33,19,131,2
+149,NAT-0024,Escarpines Ondia,6,Ondia,9.9,14.62,53,134,8
+150,NAT-0025,Champú sin aclarado Aqualis,6,Aqualis,4.62,6.14,185,390,11
+151,EQU-0001,Balón de fútbol Ludix,7,Ludix,18.94,28.12,2,5,21
+152,EQU-0002,Balón de fútbol sala Balonix,7,Balonix,17.01,22.99,135,253,14
+153,EQU-0003,Balón de baloncesto Ludix,7,Ludix,18.85,27.7,72,118,19
+154,EQU-0004,Balón de balonmano Balonix,7,Balonix,16.14,23.75,49,124,8
+155,EQU-0005,Balón de voleibol Ludix,7,Ludix,14.06,20.24,53,117,10
+156,EQU-0006,Conos de entrenamiento Ludix set 10,7,Ludix,12.33,17.96,70,155,10
+157,EQU-0007,Petos Ludix pack 6,7,Ludix,13.51,20.66,164,270,19
+158,EQU-0008,Silbato de árbitro Balonix,7,Balonix,5.13,7.9,265,419,21
+159,EQU-0009,Red de portería Ludix 3x2,7,Ludix,29.02,42.01,110,174,21
+160,EQU-0010,Bomba de balones Balonix,7,Balonix,8.34,12.34,169,290,17
+161,EQU-0011,Espinilleras Ludix,7,Ludix,9.37,14.8,123,248,12
+162,EQU-0012,Guantes de portero Balonix,7,Balonix,23.46,31.34,58,117,12
+163,EQU-0013,Rodilleras de voleibol Ludix,7,Ludix,11.48,15.33,2,5,21
+164,EQU-0014,Muñequeras de baloncesto Balonix,7,Balonix,5.56,7.37,105,287,7
+165,EQU-0015,Bolsa de balones Ludix,7,Ludix,18.16,27.19,62,156,8
+166,EQU-0016,Marcador portátil Balonix,7,Balonix,24.48,34.9,132,217,19
+167,EQU-0017,Valla de entrenamiento Ludix,7,Ludix,21.06,32.27,63,149,9
+168,EQU-0018,Escalera de agilidad Balonix,7,Balonix,14.69,22.06,78,236,6
+169,EQU-0019,Balón medicinal Ludix 4 kg,7,Ludix,21.36,29.91,83,160,13
+170,EQU-0020,Set de aros Ludix,7,Ludix,16.09,25.25,56,140,8
+171,EQU-0021,Brazalete de capitán Balonix,7,Balonix,3.87,5.92,239,392,19
+172,EQU-0022,Botella de equipo Ludix 1 L,7,Ludix,6.01,8.3,188,303,20
+173,EQU-0023,Mochila de equipo Balonix,7,Balonix,19.22,27.09,40,101,8
+174,EQU-0024,Silbato electrónico Ludix,7,Ludix,12.84,17.9,80,162,12
+175,EQU-0025,Pizarra táctica Balonix,7,Balonix,14.2,19.13,164,259,21
+176,ESQ-0001,Esquí alpino Nivex,8,Nivex,203.98,274.22,2,5,16
+177,ESQ-0002,Esquí todoterreno Albor,8,Albor,257.3,406.75,13,39,6
+178,ESQ-0003,Fijación alpina Nivex,8,Nivex,97.09,138.97,36,70,13
+179,ESQ-0004,Bastón de esquí Nivex,8,Nivex,26.57,37.6,111,208,14
+180,ESQ-0005,Bota de esquí alpino Nivex,8,Nivex,145.57,221.11,49,89,15
+181,ESQ-0006,Casco de esquí Albor,8,Albor,58.44,85.67,9,59,2
+182,ESQ-0007,Gafas de esquí Nivex,8,Nivex,47.83,75.61,28,77,7
+183,ESQ-0008,Guantes de esquí Albor,8,Albor,30.09,46.16,130,213,19
+184,ESQ-0009,Chaqueta de esquí Nivex,8,Nivex,116.47,168.16,19,58,6
+185,ESQ-0010,Pantalón de esquí Albor,8,Albor,93.92,132.7,17,46,7
+186,ESQ-0011,Camiseta térmica Nivex,8,Nivex,28.72,45.84,48,121,8
+187,ESQ-0012,Calcetines de esquí Albor,8,Albor,11.76,17.82,51,175,5
+188,ESQ-0013,Pasamontañas Nivex,8,Nivex,13.09,20.75,2,5,7
+189,ESQ-0014,Mochila de esquí Albor 20 L,8,Albor,49.9,66.64,39,98,8
+190,ESQ-0015,Funda de esquís Nivex,8,Nivex,24.05,37.4,88,145,19
+191,ESQ-0016,Cera de deslizamiento Albor,8,Albor,8.56,12.76,32,222,2
+192,ESQ-0017,Antivaho Nivex,8,Nivex,5.75,7.69,130,356,7
+193,ESQ-0018,Protector de espalda Albor,8,Albor,51.68,76.3,13,65,3
+194,ESQ-0019,Malla térmica Nivex,8,Nivex,33.7,50.75,80,155,13
+195,ESQ-0020,Calentador de cuello Albor,8,Albor,11.33,14.77,38,103,7
+196,ESQ-0021,Candado para esquís Nivex,8,Nivex,17.08,24.53,2,5,17
+197,ESQ-0022,Toalla de nieve Albor,8,Albor,10.16,15.72,124,240,13
+198,ESQ-0023,Botella isotérmica Nivex,8,Nivex,16.96,23.55,103,177,17
+199,ESQ-0024,Cubrebotas de esquí Albor,8,Albor,19.03,27.36,125,234,14
+200,ESQ-0025,Bolsa para botas Nivex,8,Nivex,21.33,30.56,117,259,10
