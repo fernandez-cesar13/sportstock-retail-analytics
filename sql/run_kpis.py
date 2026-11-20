@@ -89,16 +89,25 @@ def comentarios_de(sql: str) -> list[str]:
     return notas
 
 
-def formatear_valor(valor: object) -> str:
+def formatear_valor(valor: object, *, reales: bool) -> str:
     """Presenta un valor de celda.
 
     Los reales van con 2 decimales (redondeo de presentación, no de cálculo).
     Los enteros se quedan sin decimales: un mes o un puesto no es un importe.
-    Nulo se escribe ``n/d`` para que enero, que no tiene mes anterior, no
-    parezca una variación de cero.
+    El tipo lo decide la columna, no la fila: ``iterrows`` promociona un
+    entero a float si al lado hay un importe, y entonces 577523 saldría
+    como 577523.00. Nulo se escribe ``n/d`` para que enero, que no tiene
+    mes anterior, no parezca una variación de cero.
     """
     if valor is None:
         return "n/d"
+    try:
+        if pd.isna(valor):
+            return "n/d"
+    except TypeError:
+        pass
+    if reales:
+        return f"{float(valor):.2f}"
     if isinstance(valor, str):
         return valor.replace("|", "\\|").replace("\n", " ")
     if isinstance(valor, (bool, np.bool_)):
@@ -106,14 +115,9 @@ def formatear_valor(valor: object) -> str:
     if isinstance(valor, (int, np.integer)):
         return str(int(valor))
     if isinstance(valor, (float, np.floating)):
-        if np.isnan(valor):
-            return "n/d"
+        if float(valor).is_integer():
+            return str(int(valor))
         return f"{float(valor):.2f}"
-    try:
-        if pd.isna(valor):
-            return "n/d"
-    except TypeError:
-        pass
     return str(valor).replace("|", "\\|").replace("\n", " ")
 
 
@@ -129,15 +133,25 @@ def tabla_markdown(df: pd.DataFrame, max_filas: int = MAX_FILAS) -> str:
 
     mostradas = df.head(max_filas)
     columnas = [str(columna) for columna in mostradas.columns]
-    numerica = [pd.api.types.is_numeric_dtype(mostradas[columna]) for columna in mostradas.columns]
+    es_real = [
+        pd.api.types.is_float_dtype(mostradas[columna]) for columna in mostradas.columns
+    ]
+    numerica = [
+        pd.api.types.is_numeric_dtype(mostradas[columna]) for columna in mostradas.columns
+    ]
 
     cabecera = "| " + " | ".join(columnas) + " |"
     separadores = ["---:" if es_numerica else "---" for es_numerica in numerica]
     separador = "| " + " | ".join(separadores) + " |"
-    filas = []
-    for _, fila in mostradas.iterrows():
-        celdas = [formatear_valor(fila[columna]) for columna in mostradas.columns]
-        filas.append("| " + " | ".join(celdas) + " |")
+    # Por columna, no por fila: así un entero no hereda el dtype float del importe.
+    por_columna = [
+        [formatear_valor(valor, reales=es_real[j]) for valor in mostradas.iloc[:, j].tolist()]
+        for j in range(mostradas.shape[1])
+    ]
+    filas = [
+        "| " + " | ".join(por_columna[j][i] for j in range(len(columnas))) + " |"
+        for i in range(len(mostradas))
+    ]
 
     texto = "\n".join([cabecera, separador, *filas])
     ocultas = len(df) - len(mostradas)
@@ -210,7 +224,8 @@ def resumen_consola(titulo: str, df: pd.DataFrame) -> str:
         extra = f" | importe {importe:.2f} | margen {margen:.2f}%"
     if len(df) > MAX_FILAS:
         extra += f" | se muestran {MAX_FILAS}"
-    return f"  {titulo}: {len(df)} filas{extra}"
+    etiqueta = "fila" if len(df) == 1 else "filas"
+    return f"  {titulo}: {len(df)} {etiqueta}{extra}"
 
 
 def main() -> None:

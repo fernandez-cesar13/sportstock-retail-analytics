@@ -350,7 +350,7 @@ ORDER BY pct_dias_referencia_rotura DESC, categoria;
 
 -- KPI: Top 3 productos por categoría
 -- Qué mide: los tres productos de mayor importe dentro de cada categoría.
--- Fórmula: ROW_NUMBER() OVER (PARTITION BY categoria ORDER BY importe DESC, sku). El sku desempató para que el puesto no dependa del orden de inserción.
+-- Fórmula: ROW_NUMBER() OVER (PARTITION BY categoria_id ORDER BY importe DESC, sku). categoria_id y categoria son únicos a la vez; se parte por el id. El sku desempata para que el puesto no dependa del orden de inserción.
 -- Por qué: el ranking por categoría evita que una categoría cara (esquí) ocupe todo el top global y deje sin voz al resto. Se ordena la salida por el importe de la categoría, no por el nombre, para que lo que más vende quede arriba si el informe corta filas.
 
 WITH ventas_producto AS (

@@ -2,7 +2,7 @@
 
 Datos 100% sintéticos de la cadena ficticia SportStock. No describen a ninguna enseña real.
 
-Fecha de generación: 2026-11-20 11:31.
+Fecha de generación: 2026-11-20 11:54.
 
 Fecha de corte: 2025-12-31 (`MAX(fecha)` de `fact_stock`). Las consultas de cobertura y de estado usan esa fecha; el resto, el año completo.
 
@@ -16,7 +16,7 @@ Los reales se muestran con 2 decimales. Es redondeo de presentación: el cálcul
 
 | importe | unidades | coste | margen_bruto | margen_pct |
 | ---: | ---: | ---: | ---: | ---: |
-| 14312738.15 | 577523.00 | 10621040.87 | 3691697.28 | 25.79 |
+| 14312738.15 | 577523 | 10621040.87 | 3691697.28 | 25.79 |
 
 ## Margen por categoría
 
@@ -138,7 +138,7 @@ Los reales se muestran con 2 decimales. Es redondeo de presentación: el cálcul
 ## Top 3 productos por categoría
 
 > Qué mide: los tres productos de mayor importe dentro de cada categoría.
-> Fórmula: ROW_NUMBER() OVER (PARTITION BY categoria ORDER BY importe DESC, sku). El sku desempató para que el puesto no dependa del orden de inserción.
+> Fórmula: ROW_NUMBER() OVER (PARTITION BY categoria_id ORDER BY importe DESC, sku). categoria_id y categoria son únicos a la vez; se parte por el id. El sku desempata para que el puesto no dependa del orden de inserción.
 > Por qué: el ranking por categoría evita que una categoría cara (esquí) ocupe todo el top global y deje sin voz al resto. Se ordena la salida por el importe de la categoría, no por el nombre, para que lo que más vende quede arriba si el informe corta filas.
 
 | categoria | puesto | sku | nombre | marca | importe | unidades | margen_pct | importe_categoria |
