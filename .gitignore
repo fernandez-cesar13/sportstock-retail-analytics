@@ -20,3 +20,5 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+# Configuracion local de OpenCode (permisos del agente)
+opencode.json
