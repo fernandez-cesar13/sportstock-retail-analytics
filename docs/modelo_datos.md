@@ -1,6 +1,6 @@
 # Modelo de datos
 
-Datos 100% sintéticos de la cadena ficticia SportStock, año 2025 (365 días; no es bisiesto). No describen a ninguna enseña real.
+Datos 100 % sintéticos de la cadena ficticia SportStock, año 2025 (365 días; no es bisiesto). No describen a ninguna enseña real.
 
 El modelo semántico es una estrella con un copo de nieve de un solo salto: dos hechos al grano fecha-tienda-producto, cuatro dimensiones, y la categoría colgando del producto. Las medidas viven en una tabla vacía, `_Medidas`. Definición en [`../powerbi/RetailStock.SemanticModel/definition/`](../powerbi/RetailStock.SemanticModel/definition/model.tmdl).
 

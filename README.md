@@ -1,12 +1,14 @@
 # SportStock — Análisis de stock retail
 
-Portfolio de Data & BI de Cesar Fernandez (Barcelona) para una candidatura Data & BI Junior. Analiza el stock de la cadena ficticia SportStock en 2025: rotación, cobertura, roturas y sobrestock, con datos 100% sintéticos. La misma base alimenta los KPI en SQL y el modelo semántico de Power BI, de modo que cada cifra se puede seguir hasta la fórmula.
+Portfolio de Data & BI de Cesar Fernandez (Barcelona) para una candidatura Data & BI Junior. Analiza el stock de la cadena ficticia SportStock en 2025: rotación, cobertura, roturas y sobrestock, con datos 100 % sintéticos. La misma base alimenta los KPI en SQL y el modelo semántico de Power BI, de modo que cada cifra se puede seguir hasta la fórmula.
 
 ## Problema de negocio
 
-SportStock tiene cinco tiendas y 200 productos en ocho categorías. El stock es el cierre de cada día, no un movimiento que se sume al año. La venta del día es la demanda que cupo en la estantería, no la demanda entera. Si se suman los cierres, o si se toma la venta por la demanda, el informe mezcla capital inmovilizado, rotura y caja.
+SportStock, cadena de 5 tiendas y 200 productos en 8 categorías, tiene a la vez roturas que pierden ventas y sobrestock que inmoviliza capital, y necesita ver de un vistazo dónde actuar: qué reponer, qué dejar de comprar y qué categorías rotan peor.
 
-El calendario va del 2025-01-01 al 2025-12-31 (365 días; 2025 no es bisiesto). La fecha de corte de cobertura y de estado de stock es ese último día: `MAX(fecha)` de `fact_stock`. Hay 1000 referencias (200 productos × 5 tiendas). Grano, filas y relaciones: [docs/modelo_datos.md](docs/modelo_datos.md).
+### Cómo se mide
+
+El stock es el cierre diario semiaditivo, no un movimiento que se sume al año. La venta es la demanda que cupo en el stock, no la demanda entera. La fecha de corte de cobertura y de estado de stock es el 2025-12-31: `MAX(fecha)` de `fact_stock`. El calendario va del 2025-01-01 al 2025-12-31 (365 días; 2025 no es bisiesto). Hay 1.000 referencias (200 productos × 5 tiendas). Grano, filas y relaciones: [docs/modelo_datos.md](docs/modelo_datos.md).
 
 El informe responde una pregunta por página. Las páginas están en desarrollo: el PBIR de [powerbi/RetailStock.Report/definition.pbir](powerbi/RetailStock.Report/definition.pbir) solo apunta al modelo.
 
@@ -14,43 +16,43 @@ El informe responde una pregunta por página. Las páginas están en desarrollo:
 
 ¿Cuánto stock hay al cierre, cuánto vale y qué cobertura da la cadena?
 
-A 31/12/2025 hay 118008 unidades, valoradas a coste de ficha en 2081857.94. La cobertura de la cadena es 74.6 días: stock del último día partido por la venta media diaria del año. No es la ventana de 28 días del KPI SQL, que mira el riesgo de rotura por producto y tienda. Fuente: [docs/validacion_medidas.md](docs/validacion_medidas.md).
+A 31/12/2025 hay 118.008 unidades, valoradas a coste de ficha en 2.081.857,94 €. La cobertura de la cadena es 74,6 días: stock del último día partido por la venta media diaria del año. No es la ventana de 28 días del KPI SQL, que mira el riesgo de rotura por producto y tienda. Fuente: [docs/validacion_medidas.md](docs/validacion_medidas.md).
 
 ### Rotación
 
 ¿Cuántas veces se renueva el stock valorado a coste, y qué categoría lo retiene más?
 
-La rotación de la cadena es 4.89 (coste de ventas / valor medio diario de stock a coste). Por categoría, el SQL va de 6.03 en Deportes de raqueta (60.53 días de stock) a 4.02 en Deportes de equipo (90.75 días). Desglose: [docs/resultados_kpis.md](docs/resultados_kpis.md).
+La rotación de la cadena es 4,89 (coste de ventas / valor medio diario de stock a coste). Por categoría, el SQL va de 6,03 en Deportes de raqueta (60,53 días de stock) a 4,02 en Deportes de equipo (90,75 días). Desglose: [docs/resultados_kpis.md](docs/resultados_kpis.md).
 
 ### Alertas de stock bajo
 
 ¿Qué referencias están en rotura o bajo mínimo el 31/12, y cuáles cubren menos días?
 
-Ese día, 82 referencias están a cero y 162 por debajo del mínimo de ficha. La cobertura más corta, entre las que aún tienen stock y vendieron en los 28 días previos, es 2.75 días: SportStock Diagonal, Piolet básico Montix (MON-0023).
+Ese día, 82 referencias están a cero y 162 por debajo del mínimo de ficha. La cobertura más corta, entre las que aún tienen stock y vendieron en los 28 días previos, es 2,75 días: SportStock Diagonal, Piolet básico Montix (MON-0023).
 
 ### Ventas por categoría
 
 ¿Qué categorías mueven el importe de 2025 y con qué margen?
 
-El importe del año es 14312738.15 y el margen, 25.79%. Montaña es la primera por importe (2379821.13, un 16.63% de la venta, margen 25.89%). Deportes de equipo tiene el margen más alto (27.32%) y el menor peso (9.53%): el porcentaje no dice quién mueve la caja.
+El importe del año es 14.312.738,15 € y el margen, 25,79 %. Montaña es la primera por importe (2.379.821,13 €, un 16,63 % de la venta, margen 25,89 %). Deportes de equipo tiene el margen más alto (27,32 %) y el menor peso (9,53 %): el porcentaje no dice quién mueve la caja.
 
 ## KPIs principales
 
-Año 2025, todas las tiendas y productos. Importe, margen y estado de stock salen de [docs/resultados_kpis.md](docs/resultados_kpis.md). Rotación y disponibilidad salen de [docs/validacion_medidas.md](docs/validacion_medidas.md): son el valor esperado en pandas; la columna de Power BI sigue en pendiente. Punto decimal y sin separador de miles, como en esos documentos. Aquí no se recalcula nada.
+Año 2025, todas las tiendas y productos. Importe, margen y estado de stock salen de [docs/resultados_kpis.md](docs/resultados_kpis.md). Rotación y disponibilidad salen de [docs/validacion_medidas.md](docs/validacion_medidas.md): son el valor esperado en pandas; la columna de Power BI sigue en pendiente. Las cifras van en formato español. Aquí no se recalcula nada.
 
-Rotación = coste de ventas / valor medio diario de stock a coste. Disponibilidad = 1 − referencias en rotura / 1000. Los cuatro estados son excluyentes y cubren las 1000 referencias: 82 + 162 + 64 + 692.
+Rotación = coste de ventas / valor medio diario de stock a coste. Disponibilidad = 1 − referencias en rotura / 1.000. Los cuatro estados son excluyentes y cubren las 1.000 referencias: 82 + 162 + 64 + 692.
 
 | KPI | Valor |
 | --- | ---: |
-| Importe 2025 | 14312738.15 |
-| Margen % | 25.79% |
-| Rotación | 4.89 |
-| Disponibilidad | 91.80% |
-| Rotura a 31/12 | 82 (8.20%) |
-| Bajo mínimo a 31/12 | 162 (16.20%) |
-| Sobrestock a 31/12 | 64 (6.40%) |
+| Importe 2025 | 14.312.738,15 € |
+| Margen % | 25,79 % |
+| Rotación | 4,89 |
+| Disponibilidad | 91,80 % |
+| Rotura a 31/12 | 82 (8,20 %) |
+| Bajo mínimo a 31/12 | 162 (16,20 %) |
+| Sobrestock a 31/12 | 64 (6,40 %) |
 
-Importe, margen, rotación y disponibilidad son del año; el cierre semiaditivo de las medidas de stock es el 31/12. Rotura, bajo mínimo y sobrestock son el estado a esa fecha de corte, no la media del año. OK, el cuarto estado, son 692 referencias (69.20%).
+Importe, margen, rotación y disponibilidad son del año; el cierre semiaditivo de las medidas de stock es el 31/12. Rotura, bajo mínimo y sobrestock son el estado a esa fecha de corte, no la media del año. OK, el cuarto estado, son 692 referencias (69,20 %).
 
 ## Stack
 
@@ -87,7 +89,7 @@ Importe, margen, rotación y disponibilidad son del año; el cierre semiaditivo 
 └── pytest.ini
 ```
 
-En `data/raw/`, según [docs/modelo_datos.md](docs/modelo_datos.md): `categorias.csv` (8 filas), `productos.csv` (200), `tiendas.csv` (5), `calendario.csv` (365), `ventas.csv` (224317, solo unidades > 0) y `stock_diario.csv` (365000 = 365 × 200 × 5).
+En `data/raw/`, según [docs/modelo_datos.md](docs/modelo_datos.md): `categorias.csv` (8 filas), `productos.csv` (200), `tiendas.csv` (5), `calendario.csv` (365), `ventas.csv` (224.317, solo unidades > 0) y `stock_diario.csv` (365.000 = 365 × 200 × 5).
 
 ## Cómo reproducirlo en Windows
 

@@ -1,12 +1,12 @@
 # Decisiones
 
-Registro breve de lo que se eligió y de lo que se dejó fuera. Datos 100% sintéticos de la cadena ficticia SportStock. No describen a ninguna enseña real.
+Registro breve de lo que se eligió y de lo que se dejó fuera. Datos 100 % sintéticos de la cadena ficticia SportStock. No describen a ninguna enseña real.
 
 ## Datos sintéticos, semilla fija y casos provocados
 
 - **Decisión:** generar el universo con semilla fija (`numpy.random.default_rng`, defecto 42) y forzar rotura y sobrestock, no esperar a que salgan solos.
 - **Alternativa descartada:** datos de una enseña real, o una semilla distinta en cada ejecución, o dejar que la rotura aparezca solo si la simulación casualmente llega a cero.
-- **Motivo:** es un portfolio y tiene que poder defenderse. La misma semilla produce los mismos CSV. Los casos de alerta no salen de la semilla: son índices fijos, para poder señalarlos. 20 productos (el primero y el del medio de cada categoría de 25, más uno en Running, Fitness, Natación y Esquí) por 5 tiendas = 100 combinaciones, el 10% de 1.000. El sobrestock es otro 10%, tomado de las combinaciones sanas (una de cada nueve) y disjunto de la rotura. En rotura la ficha queda en mínimo 2 y máximo 5, y el plazo real suma 14 días al de la ficha. El sobrestock arranca con un pedido ya cursado de `2 * stock_maximo + 1` y, si vuelve a pedir, multiplica por 3. Reglas en [`generate_data.py`](../src/generate_data.py).
+- **Motivo:** es un portfolio y tiene que poder defenderse. La misma semilla produce los mismos CSV. Los casos de alerta no salen de la semilla: son índices fijos, para poder señalarlos. 20 productos (el primero y el del medio de cada categoría de 25, más uno en Running, Fitness, Natación y Esquí) por 5 tiendas = 100 combinaciones, el 10 % de 1.000. El sobrestock es otro 10 %, tomado de las combinaciones sanas (una de cada nueve) y disjunto de la rotura. En rotura la ficha queda en mínimo 2 y máximo 5, y el plazo real suma 14 días al de la ficha. El sobrestock arranca con un pedido ya cursado de `2 * stock_maximo + 1` y, si vuelve a pedir, multiplica por 3. Reglas en [`generate_data.py`](../src/generate_data.py).
 
 ## Agregado diario en ventas
 
