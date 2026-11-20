@@ -28,6 +28,7 @@
               },
               "queryRef": "DimProducto.nombre",
               "nativeQueryRef": "Producto",
+              "active": true,
               "displayName": "Producto"
             }
           ]

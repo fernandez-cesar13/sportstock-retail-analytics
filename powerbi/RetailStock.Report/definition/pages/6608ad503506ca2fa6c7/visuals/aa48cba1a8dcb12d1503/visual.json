@@ -28,6 +28,7 @@
               },
               "queryRef": "DimProducto.nombre",
               "nativeQueryRef": "Producto",
+              "active": true,
               "displayName": "Producto"
             }
           ]
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "_Medidas.Ventas Importe",
-              "nativeQueryRef": "Ventas Importe"
+              "nativeQueryRef": "Ventas Importe",
+              "active": true
             }
           ]
         },

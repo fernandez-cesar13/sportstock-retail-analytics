@@ -28,6 +28,7 @@
               },
               "queryRef": "DimCalendario.fecha",
               "nativeQueryRef": "Fecha",
+              "active": true,
               "displayName": "Fecha"
             }
           ]

@@ -1,38 +1,44 @@
 /// Tiendas de la cadena con ciudad, tipo y superficie.
 table DimTienda
+	lineageTag: c8a59019-ac64-4c9f-8c4b-6bda123ee56b
 
 	column tienda_id
 		dataType: int64
-		isKey
 		isHidden
+		isKey
 		formatString: 0
+		lineageTag: 5770e454-14c2-4b4c-839b-d75efb43fc6f
 		summarizeBy: none
 		sourceColumn: tienda_id
 
 	column nombre
 		dataType: string
+		lineageTag: 206eaee2-89ed-4a39-9951-fb1449ee41f7
 		summarizeBy: none
 		sourceColumn: nombre
 
 	column ciudad
 		dataType: string
+		lineageTag: e3869d25-a401-4310-a723-1619395076be
 		summarizeBy: none
 		sourceColumn: ciudad
 
 	column tipo
 		dataType: string
+		lineageTag: 5dbee21a-1c0b-486e-a552-ff743882aa15
 		summarizeBy: none
 		sourceColumn: tipo
 
 	column m2
 		dataType: int64
 		formatString: 0
+		lineageTag: 9c455527-9a9d-406d-bd75-9e1a226f926d
 		summarizeBy: none
 		sourceColumn: m2
 
 	partition DimTienda = m
 		mode: import
-		source = ```
+		source =
 				let
 					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
 					Origen = Csv.Document(File.Contents(RutaDatos & "tiendas.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
@@ -41,4 +47,4 @@ table DimTienda
 					Tipos = Table.TransformColumnTypes(Encabezados, {{"tienda_id", Int64.Type}, {"nombre", type text}, {"ciudad", type text}, {"tipo", type text}, {"m2", Int64.Type}}, "en-US")
 				in
 					Tipos
-				```
+

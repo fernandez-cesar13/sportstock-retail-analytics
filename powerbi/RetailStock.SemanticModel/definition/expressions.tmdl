@@ -1,2 +1,6 @@
 /// Carpeta con los CSV sintéticos. Cámbiala si clonas el repositorio en otra ruta (ver docs/configurar_ruta_datos.md).
 expression RutaDatos = "C:\Users\morde\Documents\Proyectos\retail-stock-analytics\data\raw\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: c1b93101-1bbe-42c4-b731-5a5ab48dc323
+
+	annotation PBI_ResultType = Text
+

@@ -1,27 +1,31 @@
 /// Categorías de producto y la sección a la que pertenecen.
 table DimCategoria
+	lineageTag: 85a102e1-d249-4ab2-9fe0-aa7c98d90084
 
 	column categoria_id
 		dataType: int64
-		isKey
 		isHidden
+		isKey
 		formatString: 0
+		lineageTag: f17c0a32-d65e-4ce0-917b-cd536dcc655d
 		summarizeBy: none
 		sourceColumn: categoria_id
 
 	column categoria
 		dataType: string
+		lineageTag: 41fbdd69-1471-4d2b-8baa-953a6386ea5d
 		summarizeBy: none
 		sourceColumn: categoria
 
 	column seccion
 		dataType: string
+		lineageTag: 47d455b3-ad75-4c90-9276-164c4c267267
 		summarizeBy: none
 		sourceColumn: seccion
 
 	partition DimCategoria = m
 		mode: import
-		source = ```
+		source =
 				let
 					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
 					Origen = Csv.Document(File.Contents(RutaDatos & "categorias.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
@@ -30,4 +34,4 @@ table DimCategoria
 					Tipos = Table.TransformColumnTypes(Encabezados, {{"categoria_id", Int64.Type}, {"categoria", type text}, {"seccion", type text}}, "en-US")
 				in
 					Tipos
-				```
+

@@ -1,74 +1,88 @@
 /// Calendario diario con mes, semana, temporada y eventos de cadena.
 table DimCalendario
+	lineageTag: 8483c896-102f-4c21-9949-4d01a7aa9abb
 	dataCategory: Time
 
 	column fecha
 		dataType: dateTime
 		isKey
 		formatString: dd/mm/yyyy
+		lineageTag: e85c6322-5e00-4570-bbf6-6a470c717697
 		summarizeBy: none
 		sourceColumn: fecha
 
-	column 'año'
+		annotation UnderlyingDateTimeDataType = Date
+
+	column año
 		dataType: int64
 		formatString: 0
+		lineageTag: 18b2ac85-0de5-4b83-9414-fd4b4576907a
 		summarizeBy: none
 		sourceColumn: año
 
 	column mes
 		dataType: int64
 		formatString: 0
+		lineageTag: bc73e370-7a5a-4002-97ca-ccdb46033c80
 		summarizeBy: none
 		sourceColumn: mes
 
 	column nombre_mes
 		dataType: string
-		sortByColumn: mes
+		lineageTag: a06b97f3-a88b-4f54-906b-ed8851d568f7
 		summarizeBy: none
 		sourceColumn: nombre_mes
+		sortByColumn: mes
 
 	column semana
 		dataType: int64
 		formatString: 0
+		lineageTag: 90b84fa7-be57-46d7-8cf1-f2a38a6807e4
 		summarizeBy: none
 		sourceColumn: semana
 
 	column dia_semana
 		dataType: string
-		sortByColumn: dia_semana_num
+		lineageTag: 7654a8cd-d431-4102-8b26-272652db9274
 		summarizeBy: none
 		sourceColumn: dia_semana
+		sortByColumn: dia_semana_num
 
 	column dia_semana_num
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: 407b79ef-bf0c-4b50-bea1-f6c97ce4ba3c
 		summarizeBy: none
 		sourceColumn: dia_semana_num
 
 	column es_fin_de_semana
 		dataType: boolean
+		lineageTag: efa53a31-797a-40af-892c-c9222da5483e
 		summarizeBy: none
 		sourceColumn: es_fin_de_semana
 
 	column temporada
 		dataType: string
+		lineageTag: 7fba48c3-0c2f-4da2-b584-bd289331506f
 		summarizeBy: none
 		sourceColumn: temporada
 
 	column es_rebajas
 		dataType: boolean
+		lineageTag: 7b3675d1-b1fc-4472-b163-df290f962d6b
 		summarizeBy: none
 		sourceColumn: es_rebajas
 
 	column es_black_friday
 		dataType: boolean
+		lineageTag: 9b31fa98-1a5a-44a1-b107-2ca4710186d3
 		summarizeBy: none
 		sourceColumn: es_black_friday
 
 	partition DimCalendario = m
 		mode: import
-		source = ```
+		source =
 				let
 					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
 					Origen = Csv.Document(File.Contents(RutaDatos & "calendario.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
@@ -79,4 +93,4 @@ table DimCalendario
 					ConDia = Table.AddColumn(Tipos, "dia_semana_num", each Date.DayOfWeek([fecha], Day.Monday) + 1, Int64.Type)
 				in
 					ConDia
-				```
+

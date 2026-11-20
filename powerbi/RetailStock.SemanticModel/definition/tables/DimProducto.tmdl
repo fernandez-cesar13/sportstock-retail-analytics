@@ -1,21 +1,25 @@
 /// Catálogo de productos con precios, stock objetivo y plazo de entrega.
 table DimProducto
+	lineageTag: 23044a5e-d111-4b6d-a2ef-d41e5df81459
 
 	column producto_id
 		dataType: int64
-		isKey
 		isHidden
+		isKey
 		formatString: 0
+		lineageTag: 588abaab-6e8f-4cde-8f80-590be5332215
 		summarizeBy: none
 		sourceColumn: producto_id
 
 	column sku
 		dataType: string
+		lineageTag: 5237b7f4-94cc-4f2e-a068-29f69fb76b82
 		summarizeBy: none
 		sourceColumn: sku
 
 	column nombre
 		dataType: string
+		lineageTag: ae3ac86c-4cd1-4acf-be14-db4160e9f237
 		summarizeBy: none
 		sourceColumn: nombre
 
@@ -23,47 +27,54 @@ table DimProducto
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: 6f466970-b0ab-4b16-879c-4811af6ed444
 		summarizeBy: none
 		sourceColumn: categoria_id
 
 	column marca
 		dataType: string
+		lineageTag: 33443e9a-bbcc-40e5-b8ef-67e20598e7e1
 		summarizeBy: none
 		sourceColumn: marca
 
 	column precio_coste
 		dataType: double
 		formatString: #,##0.00
+		lineageTag: ffc63ee5-ab9c-495d-8e80-59320b5e8e8e
 		summarizeBy: none
 		sourceColumn: precio_coste
 
 	column precio_venta
 		dataType: double
 		formatString: #,##0.00
+		lineageTag: 80c29c42-ef6c-44f2-9a77-ec31dd65a191
 		summarizeBy: none
 		sourceColumn: precio_venta
 
 	column stock_minimo
 		dataType: int64
 		formatString: 0
+		lineageTag: 4f0bd3de-b72e-4cc2-bd82-bf359aafdcf4
 		summarizeBy: none
 		sourceColumn: stock_minimo
 
 	column stock_maximo
 		dataType: int64
 		formatString: 0
+		lineageTag: 6627db1f-362b-4f18-8dfe-b2e8b8f6eb97
 		summarizeBy: none
 		sourceColumn: stock_maximo
 
 	column lead_time_dias
 		dataType: int64
 		formatString: 0
+		lineageTag: 442cf5ba-941a-4768-9bad-59822f314e08
 		summarizeBy: none
 		sourceColumn: lead_time_dias
 
 	partition DimProducto = m
 		mode: import
-		source = ```
+		source =
 				let
 					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
 					Origen = Csv.Document(File.Contents(RutaDatos & "productos.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
@@ -72,4 +83,4 @@ table DimProducto
 					Tipos = Table.TransformColumnTypes(Encabezados, {{"producto_id", Int64.Type}, {"sku", type text}, {"nombre", type text}, {"categoria_id", Int64.Type}, {"marca", type text}, {"precio_coste", type number}, {"precio_venta", type number}, {"stock_minimo", Int64.Type}, {"stock_maximo", Int64.Type}, {"lead_time_dias", Int64.Type}}, "en-US")
 				in
 					Tipos
-				```
+

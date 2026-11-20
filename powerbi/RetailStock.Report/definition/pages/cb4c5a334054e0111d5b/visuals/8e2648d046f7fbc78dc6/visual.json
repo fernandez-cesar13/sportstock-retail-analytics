@@ -28,6 +28,7 @@
               },
               "queryRef": "DimTienda.nombre",
               "nativeQueryRef": "Tienda",
+              "active": true,
               "displayName": "Tienda"
             }
           ]

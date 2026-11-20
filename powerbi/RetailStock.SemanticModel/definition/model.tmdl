@@ -7,6 +7,12 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
+annotation PBI_QueryOrder = ["DimCalendario","DimCategoria","DimProducto","DimTienda","FactVentas","FactStock","_Medidas","RutaDatos"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
 ref table DimCalendario
 ref table DimCategoria
 ref table DimProducto
@@ -16,3 +22,4 @@ ref table FactStock
 ref table _Medidas
 
 ref cultureInfo es-ES
+

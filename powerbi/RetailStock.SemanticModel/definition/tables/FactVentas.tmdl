@@ -1,10 +1,12 @@
 /// Ventas diarias agregadas por fecha, tienda y producto (grano del hecho).
 table FactVentas
+	lineageTag: 88acf1a6-289c-499c-b42c-b1d0906c3cdc
 
 	column venta_id
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: a43bda4a-3926-495c-8f4d-e0890dde93ef
 		summarizeBy: none
 		sourceColumn: venta_id
 
@@ -12,13 +14,17 @@ table FactVentas
 		dataType: dateTime
 		isHidden
 		formatString: dd/mm/yyyy
+		lineageTag: 38d72892-f51b-41e9-bd8d-106d265cb317
 		summarizeBy: none
 		sourceColumn: fecha
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column tienda_id
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: 32d9ad92-8a2c-4ced-9e06-3dc96aa822a5
 		summarizeBy: none
 		sourceColumn: tienda_id
 
@@ -26,30 +32,34 @@ table FactVentas
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: f055aac5-02a7-4361-a29a-689bcf4ed070
 		summarizeBy: none
 		sourceColumn: producto_id
 
 	column unidades
 		dataType: int64
 		formatString: 0
+		lineageTag: ea48932b-ca3f-407d-8335-a8bceebe8f05
 		summarizeBy: sum
 		sourceColumn: unidades
 
 	column importe
 		dataType: double
 		formatString: #,##0.00
+		lineageTag: 407eea24-dc8d-4a1d-9012-bce178381673
 		summarizeBy: sum
 		sourceColumn: importe
 
 	column coste
 		dataType: double
 		formatString: #,##0.00
+		lineageTag: 946869e4-07c9-4213-9048-add7de6fb79b
 		summarizeBy: sum
 		sourceColumn: coste
 
 	partition FactVentas = m
 		mode: import
-		source = ```
+		source =
 				let
 					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
 					Origen = Csv.Document(File.Contents(RutaDatos & "ventas.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
@@ -58,4 +68,4 @@ table FactVentas
 					Tipos = Table.TransformColumnTypes(Encabezados, {{"venta_id", Int64.Type}, {"fecha", type date}, {"tienda_id", Int64.Type}, {"producto_id", Int64.Type}, {"unidades", Int64.Type}, {"importe", type number}, {"coste", type number}}, "en-US")
 				in
 					Tipos
-				```
+

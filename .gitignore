@@ -8,6 +8,8 @@ __pycache__/
 .venv/
 venv/
 # Power BI (PBIP): ajustes locales y cache, no se versionan
+.pbi/
+**/.pbi/
 .pbi/localSettings.json
 **/.pbi/localSettings.json
 **/.pbi/cache.abf

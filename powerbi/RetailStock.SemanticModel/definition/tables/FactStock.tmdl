@@ -1,17 +1,22 @@
 /// Stock diario por fecha, tienda y producto (cierre, entradas y salidas).
 table FactStock
+	lineageTag: 0a197e01-db98-41b2-98a1-d780e462e926
 
 	column fecha
 		dataType: dateTime
 		isHidden
 		formatString: dd/mm/yyyy
+		lineageTag: 9d82d0e3-b657-4661-8f4d-dd3bf898c07c
 		summarizeBy: none
 		sourceColumn: fecha
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column tienda_id
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: 5243c027-aabe-4a2b-a368-ff2f1d16a5d4
 		summarizeBy: none
 		sourceColumn: tienda_id
 
@@ -19,30 +24,34 @@ table FactStock
 		dataType: int64
 		isHidden
 		formatString: 0
+		lineageTag: 3b06d0a7-922e-4fc9-a125-f0d0e491d9cc
 		summarizeBy: none
 		sourceColumn: producto_id
 
 	column stock_final
 		dataType: int64
 		formatString: 0
+		lineageTag: a50c6134-20c3-4a0f-9447-3767207c6f5a
 		summarizeBy: sum
 		sourceColumn: stock_final
 
 	column entradas
 		dataType: int64
 		formatString: 0
+		lineageTag: 1f9ac9c3-a9de-469a-ba88-b9646a9ec385
 		summarizeBy: sum
 		sourceColumn: entradas
 
 	column salidas
 		dataType: int64
 		formatString: 0
+		lineageTag: 97883e72-5cd7-4785-a055-2e6e14600cf0
 		summarizeBy: sum
 		sourceColumn: salidas
 
 	partition FactStock = m
 		mode: import
-		source = ```
+		source =
 				let
 					// Lee el CSV en UTF-8 (65001) desde la carpeta del parámetro RutaDatos
 					Origen = Csv.Document(File.Contents(RutaDatos & "stock_diario.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
@@ -51,4 +60,4 @@ table FactStock
 					Tipos = Table.TransformColumnTypes(Encabezados, {{"fecha", type date}, {"tienda_id", Int64.Type}, {"producto_id", Int64.Type}, {"stock_final", Int64.Type}, {"entradas", Int64.Type}, {"salidas", Int64.Type}}, "en-US")
 				in
 					Tipos
-				```
+

@@ -25,3 +25,4 @@ relationship FactStock_DimProducto
 relationship DimProducto_DimCategoria
 	fromColumn: DimProducto.categoria_id
 	toColumn: DimCategoria.categoria_id
+
