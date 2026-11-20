@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "fff4bcab3b84f4aedebd",
+  "position": {
+    "x": 24,
+    "y": 272,
+    "z": 200,
+    "height": 500,
+    "width": 1872,
+    "tabOrder": 20
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimTienda"
+                    }
+                  },
+                  "Property": "nombre"
+                }
+              },
+              "queryRef": "DimTienda.nombre",
+              "nativeQueryRef": "Tienda",
+              "displayName": "Tienda"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProducto"
+                    }
+                  },
+                  "Property": "sku"
+                }
+              },
+              "queryRef": "DimProducto.sku",
+              "nativeQueryRef": "SKU",
+              "displayName": "SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProducto"
+                    }
+                  },
+                  "Property": "nombre"
+                }
+              },
+              "queryRef": "DimProducto.nombre",
+              "nativeQueryRef": "Producto",
+              "displayName": "Producto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCategoria"
+                    }
+                  },
+                  "Property": "categoria"
+                }
+              },
+              "queryRef": "DimCategoria.categoria",
+              "nativeQueryRef": "Categoría",
+              "displayName": "Categoría"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Estado Stock"
+                }
+              },
+              "queryRef": "_Medidas.Estado Stock",
+              "nativeQueryRef": "Estado Stock"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Stock Actual (uds)"
+                }
+              },
+              "queryRef": "_Medidas.Stock Actual (uds)",
+              "nativeQueryRef": "Stock actual",
+              "displayName": "Stock actual"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProducto"
+                    }
+                  },
+                  "Property": "stock_minimo"
+                }
+              },
+              "queryRef": "DimProducto.stock_minimo",
+              "nativeQueryRef": "Stock mínimo",
+              "displayName": "Stock mínimo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProducto"
+                    }
+                  },
+                  "Property": "stock_maximo"
+                }
+              },
+              "queryRef": "DimProducto.stock_maximo",
+              "nativeQueryRef": "Stock máximo",
+              "displayName": "Stock máximo"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Días de Cobertura"
+                }
+              },
+              "queryRef": "_Medidas.Días de Cobertura",
+              "nativeQueryRef": "Días de cobertura",
+              "displayName": "Días de cobertura"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProducto"
+                    }
+                  },
+                  "Property": "lead_time_dias"
+                }
+              },
+              "queryRef": "DimProducto.lead_time_dias",
+              "nativeQueryRef": "Lead time (días)",
+              "displayName": "Lead time (días)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle producto-tienda (filtra Estado Stock en el panel de filtros)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

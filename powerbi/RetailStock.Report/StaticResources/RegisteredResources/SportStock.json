@@ -1,0 +1,113 @@
+{
+  "name": "SportStock",
+  "dataColors": [
+    "#0F6E56",
+    "#16324F",
+    "#E07A3D",
+    "#3D5A80",
+    "#C9A227",
+    "#8B1E3F",
+    "#4A7C59",
+    "#D64550",
+    "#197278",
+    "#5B6A9A"
+  ],
+  "foreground": "#16324F",
+  "foregroundNeutralSecondary": "#4A5A6A",
+  "foregroundNeutralTertiary": "#8A8F98",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F4F1EA",
+  "backgroundNeutral": "#E6E1D6",
+  "tableAccent": "#0F6E56",
+  "good": "#3D8B6E",
+  "neutral": "#E07A3D",
+  "bad": "#C0392B",
+  "maximum": "#0F6E56",
+  "center": "#F7F4EF",
+  "minimum": "#E07A3D",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 22,
+      "color": "#16324F"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#16324F"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#16324F"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10.5,
+      "color": "#16324F"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "fontFamily": "Segoe UI Semibold",
+            "fontColor": {
+              "solid": {
+                "color": "#16324F"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F7F4EF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#E6E1D6"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#4A5A6A"
+              }
+            },
+            "fontFamily": "Segoe UI"
+          }
+        ],
+        "calloutValue": [
+          {
+            "color": {
+              "solid": {
+                "color": "#16324F"
+              }
+            },
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ]
+      }
+    }
+  }
+}

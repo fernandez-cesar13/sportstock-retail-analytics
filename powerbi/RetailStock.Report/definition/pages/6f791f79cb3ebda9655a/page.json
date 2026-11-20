@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "6f791f79cb3ebda9655a",
+  "displayName": "Alertas de stock bajo",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920
+}
