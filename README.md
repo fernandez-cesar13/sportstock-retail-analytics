@@ -10,7 +10,7 @@ SportStock, cadena de 5 tiendas y 200 productos en 8 categorías, tiene a la vez
 
 El stock es el cierre diario semiaditivo, no un movimiento que se sume al año. La venta es la demanda que cupo en el stock, no la demanda entera. La fecha de corte de cobertura y de estado de stock es el 2025-12-31: `MAX(fecha)` de `fact_stock`. El calendario va del 2025-01-01 al 2025-12-31 (365 días; 2025 no es bisiesto). Hay 1.000 referencias (200 productos × 5 tiendas). Grano, filas y relaciones: [docs/modelo_datos.md](docs/modelo_datos.md).
 
-El informe responde una pregunta por página. Las páginas están en desarrollo: el PBIR de [powerbi/RetailStock.Report/definition.pbir](powerbi/RetailStock.Report/definition.pbir) solo apunta al modelo.
+El informe responde una pregunta por página. Las cuatro páginas están en [powerbi/RetailStock.Report/](powerbi/RetailStock.Report/) y se abren desde [powerbi/RetailStock.pbip](powerbi/RetailStock.pbip).
 
 ### Visión general de stock
 
@@ -83,7 +83,7 @@ Importe, margen, rotación y disponibilidad son del año; el cierre semiaditivo 
 ├── powerbi
 │   ├── RetailStock.pbip
 │   ├── RetailStock.SemanticModel   # tablas, relaciones, DAX, RutaDatos
-│   └── RetailStock.Report          # PBIR; páginas aún sin construir
+│   └── RetailStock.Report          # informe de 4 páginas (PBIR)
 ├── docs                       # modelo, medidas, validación, decisiones, KPIs
 ├── requirements.txt
 └── pytest.ini
@@ -123,13 +123,23 @@ Estrella con un copo de un salto. `FactVentas` y `FactStock` comparten el grano 
 
 ## Capturas
 
-Las capturas del informe se añadirán en `docs/capturas/` cuando las páginas estén construidas en Power BI Desktop. Este README no enlaza imágenes: esa carpeta todavía no tiene ficheros.
+Las capturas del dashboard se añadirán en `docs/capturas/` cuando Cesar las tome en Power BI Desktop. Este README no enlaza imágenes todavía.
 
 ## Estado del proyecto
 
-Terminados: los datos sintéticos, los tests del generador, la capa SQL (esquema, carga y KPIs) y el modelo semántico (tablas, relaciones, parámetro `RutaDatos` y medidas DAX).
+Completado:
 
-El modelo se ha validado con la librería TOM. Las medidas se han validado con pandas, en el año completo y en un segundo contexto (tienda SportStock Diagonal y categoría Running). Falta validarlo abriendo el `.pbip` en Power BI Desktop y rellenar la columna «Valor en Power BI» de [docs/validacion_medidas.md](docs/validacion_medidas.md). Las páginas del informe están en desarrollo.
+- Datos sintéticos de la cadena ficticia SportStock (generador con semilla fija y CSV en `data/raw/`).
+- Tests del generador con pytest.
+- Capa SQL en SQLite: esquema en estrella, carga y KPIs documentados en [docs/resultados_kpis.md](docs/resultados_kpis.md).
+- Modelo semántico en TMDL: estrella con 7 tablas, 7 relaciones, parámetro `RutaDatos` y 20 medidas DAX.
+- Informe Power BI de 4 páginas (Visión general de stock, Rotación, Alertas de stock bajo y Ventas por categoría), abierto y guardado sin errores en Power BI Desktop.
+- Documentación de modelo, medidas, validación, decisiones y guía de reproducción.
+
+Pendiente:
+
+- Capturas del dashboard en `docs/capturas/`, que hará Cesar.
+- Anotar en [docs/validacion_medidas.md](docs/validacion_medidas.md) la columna «Valor en Power BI» cuando se contrasten las medidas en Desktop.
 
 ## Aprendizajes
 
