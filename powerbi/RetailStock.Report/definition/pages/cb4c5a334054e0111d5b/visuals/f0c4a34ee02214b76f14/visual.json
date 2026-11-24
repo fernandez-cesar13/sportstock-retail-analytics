@@ -125,5 +125,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ba33216ee5978b035cd1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCalendario"
+              }
+            },
+            "Property": "nombre_mes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1a671c64c4964920b772",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategoria"
+              }
+            },
+            "Property": "categoria"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5e6c5a0319a543657925",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Ventas Importe"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "652f0b03c5522005d373",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Margen %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9c2b52200baa8ad9e80e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Var % vs Mes Anterior"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
