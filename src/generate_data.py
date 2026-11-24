@@ -1,8 +1,8 @@
 """Generador de datos sintéticos de stock para la cadena ficticia SportStock.
 
-Todo el universo es inventado: no hay tiendas, marcas ni cifras de Decathlon ni
-de ninguna enseña real. Sirve para un portfolio de Data & BI y tiene que poder
-defenderse en una entrevista, así que cada regla de negocio está comentada.
+Todo el universo es inventado: no hay tiendas, marcas ni cifras de ninguna
+empresa real. Cada regla de negocio está comentada para que el modelo se
+entienda y se pueda revisar.
 
 Modelo, en una frase: la demanda diaria es una Poisson de factores (producto,
 tienda, mes, día de la semana y eventos); la venta real es el mínimo entre esa
